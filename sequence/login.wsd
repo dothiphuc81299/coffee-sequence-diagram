@@ -1,0 +1,20 @@
+@startuml
+actor ngườiDùng
+participant "màn hình đăng nhập" as A
+participant "cơ sở dữ liệu" as B
+
+
+ngườiDùng -> A : 1.Nhập thông tin tài khoản
+
+activate A
+A -> B : 2.Truy vấn CSDL
+activate B
+
+B --> A : 3.Lỗi xác thực tài khoản hoặc mật khẩu không đúng
+deactivate B
+deactivate A
+
+B --> ngườiDùng : 4.Đăng nhập thành công. Hiển thị cửa sổ chương trình
+
+
+@enduml

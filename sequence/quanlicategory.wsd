@@ -1,0 +1,51 @@
+@startuml
+actor QuảnLý
+participant "Màn hình quản lý va xem danh mục" as A
+participant "Màn hình thêm danh mục" as B
+participant "Man hình chỉnh sửa danh mục" as C
+participant "Màn hình xác nhận xóa danh mục" as D
+
+participant "cơ sở dữ liệu" as E
+
+
+QuảnLý -> A : 1.Chọn tab Categories
+activate A 
+A ->E : 2.Truy vấn CSDL
+activate E
+E --> A : 3 .Hiển thị danh sách danh mục
+deactivate E 
+
+
+A -> B : 4. Chọn thêm danh mục
+activate B 
+B ->B : Validate()
+B -> E : 5 Truy vấn CSDL
+activate E 
+E --> B : 6. Lỗi không thể tạo
+deactivate B 
+E --> A : 7. Thêm thành công danh mục
+deactivate E 
+
+
+A -> C : 8. Chỉnh sửa danh mục 
+activate C 
+C ->C :Validate()
+
+C ->E :9 Truy vấn CSDL
+activate E 
+E --> C :10.  Lỗi không thể chỉnh sửa
+deactivate C 
+E --> A : 11. Chỉnh sửa thành công danh mục
+deactivate E 
+
+A -> D :12. Xóa danh mục 
+activate D 
+D ->E : 13.Truy vấn CSDL
+activate E 
+E --> D : 14.Lỗi không xóa thành công 
+deactivate D 
+E --> A : 15. Xóa danh mục thành công
+deactivate E 
+A  -> A : 16. Tìm kiếm
+
+@enduml

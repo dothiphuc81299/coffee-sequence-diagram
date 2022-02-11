@@ -1,0 +1,28 @@
+@startuml
+actor ngườiDùng
+participant "Màn hình đăng kí" as A
+participant "Màn hình xác nhận tài khoản" as B 
+participant "cơ sở dữ liệu" as C
+
+
+ngườiDùng -> A : 1.Nhập thông tin tài khoản
+
+activate A
+A -> C  :   2.Truy vấn CSDL
+activate C
+C --> A : 3.Lỗi tài khoản đã tồn tại
+deactivate C 
+deactivate A 
+C --> ngườiDùng : 4.Đăng kí thành công
+ngườiDùng ->B : 5.Truy cập email để lấy mã xác thực
+activate B
+B ->C : 6.Truy vấn CSDL
+activate C 
+C --> B : 7. Mã xác thực không đúng
+
+deactivate B 
+C --> ngườiDùng: 8 : Xác thực tài khoản khoan thành công.Chuyển đến màn hình đăng nhập
+deactivate C 
+
+
+@enduml

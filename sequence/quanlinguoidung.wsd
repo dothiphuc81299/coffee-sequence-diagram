@@ -1,0 +1,26 @@
+@startuml
+actor QuảnLý
+participant "Màn hình quản lý va xem người dùng" as A
+participant "Màn hình xác nhận thay đổi trạng thái người dùng" as D
+
+participant "cơ sở dữ liệu" as E
+
+
+QuảnLý -> A : 1.Chọn tab Users
+activate A 
+A ->E : 2.Truy vấn CSDL
+activate E
+E --> A : 3 .Hiển thị danh sách người dùng
+deactivate E 
+
+A -> D :4. Thay đổi trạng thái người dùng 
+activate D 
+D ->E : 5.Truy vấn CSDL
+activate E 
+E --> D : 6.Lỗi không thể thay đổi trạng thái 
+deactivate D 
+E --> A : 7. Thay đổi trạng thái người dùng thành công
+deactivate E 
+A  -> A : 8. Tìm kiếm
+
+@enduml
